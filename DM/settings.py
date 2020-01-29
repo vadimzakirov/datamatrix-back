@@ -1,15 +1,7 @@
 import os
-import djcelery
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-
-#Celery config
-djcelery.setup_loader()
-
-CELERYBEAT_SCHEDULER="djcelery.schedulers.DatabaseScheduler"
-CELERY_ALWAYS_EAGER=False
-BROKER_BACKEND = "djkombu.transport.DatabaseTransport"
 
 
 # Quick-start development settings - unsuitable for production
@@ -28,8 +20,8 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
     'dm_app',
-    'djcelery',
-    'djkombu',
+    'rest_framework',
+    'corsheaders',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -41,6 +33,7 @@ INSTALLED_APPS = [
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -49,6 +42,7 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'DM.urls'
+CORS_ORIGIN_ALLOW_ALL = True
 
 TEMPLATES = [
     {

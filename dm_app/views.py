@@ -23,7 +23,6 @@ class ImageWorker(APIView):
             DM.make_datamatrix()
             return Response({"ok": 'ok'})
         if last:
-            print('LAAAASSSSTTTT')
             s = Session.objects.get(uuid=session_uuid)
             DM = Datamatrix(text=text,session_id=s)
             DM.make_datamatrix()
